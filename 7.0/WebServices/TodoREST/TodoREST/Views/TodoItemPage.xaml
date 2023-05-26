@@ -1,6 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:TodoREST.ViewModels"
+             x:DataType="{x:Type vm:TodoItemPageViewModel}"
 			 x:Class="TodoREST.Views.TodoItemPage" 
 			 Title="Todo">
     <ContentPage.Resources>
@@ -26,11 +28,11 @@
                Placeholder="Enter notes" />
 		<Label Text="Done" />
 		<Switch IsToggled="{Binding Path=TodoItem.Done}" />
-		<Button Text="Save" 
-                Clicked="OnSaveButtonClicked" />
+		<Button Text="Save"
+                Command="{Binding SaveCommand}" />
 		<Button Text="Delete"
-                Clicked="OnDeleteButtonClicked" />
+                Command="{Binding DeleteCommand}" />
 		<Button Text="Cancel" 
-                Clicked="OnCancelButtonClicked" />
+                Command="{Binding CancelCommand}" />
 	</VerticalStackLayout>
 </ContentPage>

@@ -4,10 +4,10 @@ namespace TodoREST;
 
 public partial class AppShell : Shell
 {
-	public AppShell()
-	{
-		InitializeComponent();
+    public AppShell()
+    {
+        InitializeComponent();
 
-		Routing.RegisterRoute(nameof(TodoItemPage), typeof(TodoItemPage));
-	}
+        Routing.RegisterRoute( "TodoItem", typeof( TodoItemPage ) );
+    }
 }

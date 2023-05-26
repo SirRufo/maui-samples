@@ -1,10 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:TodoREST.ViewModels"
+             xmlns:models="clr-namespace:TodoREST.Models"
+             x:DataType="{x:Type vm:TodoListPageViewModel}"
              x:Class="TodoREST.Views.TodoListPage"
              Title="Todo">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add Item" Clicked="OnAddItemClicked">
+        <ToolbarItem Text="Add Item" Command="{Binding AddCommand}">
             <ToolbarItem.IconImageSource>
                 <OnPlatform x:TypeArguments="ImageSource">
                     <On Platform="Android, WinUI" Value="plus.png" />
@@ -12,12 +15,12 @@
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
     </ContentPage.ToolbarItems>
-    <CollectionView x:Name="collectionView"
+    <CollectionView ItemsSource="{Binding TodoItems}"
+                    SelectedItem="{Binding SelectedItem}"
                     Margin="20"
-                    SelectionMode="Single"
-                    SelectionChanged="OnSelectionChanged">
+                    SelectionMode="Single">
         <CollectionView.ItemTemplate>
-            <DataTemplate>
+            <DataTemplate x:DataType="models:TodoItem">
                 <Grid Padding="20,0,0,0"
                       ColumnDefinitions="0.9*, 0.1*">
                     <Label Text="{Binding Name}" 
